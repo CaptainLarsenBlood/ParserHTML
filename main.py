@@ -1,6 +1,6 @@
 import sys
 import requests
-from parse import HTMLParserArticle
+from parser import HTMLParserArticle
 from inout import save_txt, get_text
 
 
