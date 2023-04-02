@@ -1,0 +1,5 @@
+[HEADER]
+add_link = True
+add_title = True
+with_headers = False
+len_string = 80

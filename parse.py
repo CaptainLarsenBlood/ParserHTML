@@ -1,6 +1,4 @@
-from typing import Iterable, Union
-
-from lxml.etree import Element
+from typing import Union
 from lxml.html import document_fromstring
 from textwrap import fill
 
@@ -13,6 +11,7 @@ class HTMLParserArticle:
 
     def __init__(self, html: str, len_string: int = 80, add_link: bool = True, with_headers: bool = False,
                  with_title: bool=True):
+
         self.tree_html = document_fromstring(html)
         self.len_string = len_string
         self.add_link = add_link
@@ -76,6 +75,8 @@ class HTMLParserArticle:
 
         lst_for_gum = []
         for paragraph in lst_paragraphs:
+            if paragraph[0] is None:
+                continue
             if paragraph != "\n\n":
                 lst_for_gum.append(fill("".join(paragraph), self.len_string, replace_whitespace=False))
             else:

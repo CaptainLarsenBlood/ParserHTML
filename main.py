@@ -1,19 +1,28 @@
+#!/usr/bin/env python
+# coding:utf-8
+
+import configparser
 import sys
-import requests
 from parse import HTMLParserArticle
 from inout import save_txt, get_text
+
+conf = configparser.RawConfigParser()
+conf.read("config")
+len_st = conf.getint("HEADER", "len_string")
+link = conf.getboolean("HEADER", "add_link")
+title = conf.getboolean("HEADER", "add_title")
+headers = conf.getboolean("HEADER", "with_headers")
 
 
 def main() -> None:
 
-    url = "https://www.rbc.ru/rbcfreenews/6428e5799a7947d8182c6660?utm_source=yxnews&utm_medium=desktop"  # sys.argv[1]
+    url = input("Вставьте ссылку: ")
+    #url = sys.argv[1]
     html_page = get_text(url)
-    main_txt = HTMLParserArticle(html_page).get_text_article()
+    doc_html = HTMLParserArticle(html_page, len_string=len_st, add_link=link, with_headers=headers, with_title=title)
+    main_txt = doc_html.get_text_article()
     save_txt(main_txt, url)
 
 
 if __name__ == '__main__':
     main()
-
-
-

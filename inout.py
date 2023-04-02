@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 import os
 import requests
+import logging
 
 
 def get_text(url: str) -> str:
@@ -17,3 +18,4 @@ def save_txt(text: str, url: str):
 
     with open(f"{path_save}/index.txt", 'w+', encoding='utf-8') as file:
         file.write(text.replace(u"\u00A0", " "))
+        print(f"Статья сохранена в директории {os.getcwd()}/{path_save}")
