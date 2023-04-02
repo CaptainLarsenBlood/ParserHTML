@@ -16,4 +16,4 @@ def save_txt(text: str, url: str):
     os.makedirs(path_save, exist_ok=True)
 
     with open(f"{path_save}/index.txt", 'w+', encoding='utf-8') as file:
-        file.write(str(text))
+        file.write(text.replace(u"\u00A0", " "))
