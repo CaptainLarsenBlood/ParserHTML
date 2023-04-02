@@ -2,6 +2,13 @@ from urllib.parse import urlparse
 import os
 import requests
 import logging
+import argparse
+
+def get_url() -> str:
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("url", help="url to article")
+    return parser.parse_args().url
 
 
 def get_text(url: str) -> str:

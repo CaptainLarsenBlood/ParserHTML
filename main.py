@@ -2,9 +2,9 @@
 # coding:utf-8
 
 import configparser
-import sys
+import argparse
 from parse import HTMLParserArticle
-from inout import save_txt, get_text
+from inout import save_txt, get_text, get_url
 
 conf = configparser.RawConfigParser()
 conf.read("config")
@@ -16,8 +16,7 @@ headers = conf.getboolean("HEADER", "with_headers")
 
 def main() -> None:
 
-    url = input("Вставьте ссылку: ")
-    #url = sys.argv[1]
+    url = get_url()
     html_page = get_text(url)
     doc_html = HTMLParserArticle(html_page, len_string=len_st, add_link=link, with_headers=headers, with_title=title)
     main_txt = doc_html.get_text_article()
